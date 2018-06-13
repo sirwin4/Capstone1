@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SearchResult from './searchResult'
+import {SearchResult} from './searchResult'
 
 
 class App extends Component {
@@ -12,7 +12,9 @@ class App extends Component {
     movie: [],
     overview: [],
     release: [],
-    element: []
+    element: [],
+    filmId: [],
+    confirmId: []
   }}
 
   handleChange = function (event) {
@@ -25,7 +27,8 @@ class App extends Component {
       movie: [],
       overview: [],
       release: [],
-      element: [] 
+      element: [],
+      filmId: []
     })
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=d1828a2d110346eee0cfdd42f858ba1e&language=en-US&query=${encodeURI(this.state.term)}&page=1&include_adult=false`) 
     .then(result => result.json())
@@ -33,18 +36,21 @@ class App extends Component {
       if (result.total_results !== 0){
         let movieArray =[]
         let overviewArray =[]
-        let releaseArray =[]
+        let releaseArray = []
+        let filmIdArray = []
         for (let index = 0; index < 5; index++) {
           if(index <= result.total_results){
             movieArray.push(result.results[index].original_title)
             overviewArray.push(result.results[index].overview)
             releaseArray.push(result.results[index].release_date)
+            filmIdArray.push(result.results[index].id)
           }
         }
         this.setState({
           movie: movieArray,
           overview: overviewArray,
-          release: releaseArray
+          release: releaseArray,
+          filmId: filmIdArray
         })
       }
       else {
@@ -62,7 +68,7 @@ class App extends Component {
       for (let index = 0; index < this.state.movie.length; index++) {
         this.state.element.push(
           <div>
-            <h2>{this.state.movie[index]}</h2>
+            <a href="#" onClick={SearchResult}><h2 id={`${this.state.filmId[index]}`}>{this.state.movie[index]}</h2></a>
             <p>{this.state.overview[index]}</p>
             <p>{this.state.release[index]}</p>
           </div>
