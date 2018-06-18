@@ -14,7 +14,8 @@ class App extends Component {
     release: [],
     element: [],
     filmId: [],
-    confirmId: ""
+    confirmId: "",
+    components: ""
   }}
 
   handleChange = function (event) {
@@ -71,7 +72,7 @@ class App extends Component {
             <h2 id={`${this.state.filmId[index]}`}><a href="#" onClick={ExpandMovie}>{this.state.movie[index]}</a></h2>
             <p>{this.state.overview[index]}</p>
             <p>{this.state.release[index]}</p>
-            <div></div>
+            <div>{this.state.components}</div>
           </div>
         )
       }
@@ -95,6 +96,7 @@ class App extends Component {
         <button type="Submit">Submit</button>
         </form>
         <div>{this.state.element[0]}{this.state.element[1]}{this.state.element[2]}{this.state.element[3]}{this.state.element[4]}</div>
+        <div></div>
       </div>
     );
   }

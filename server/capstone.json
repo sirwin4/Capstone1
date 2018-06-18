@@ -1,9 +1,14 @@
 {
   "movies": [
     {
-      "id": "39514",
-      "average": 0.004329004329004329,
-      "ratings": 24
+      "average": 0.06451612903225806,
+      "ratings": 4,
+      "id": "39514"
+    },
+    {
+      "id": "401981",
+      "average": 3,
+      "ratings": 1
     }
   ],
   "users": [
@@ -17,9 +22,28 @@
   ],
   "moviesUsers": [
     {
-      "id": 1,
+      "rating": 2,
+      "id": 1
+    },
+    {
+      "movieId": "401981",
       "userId": 1,
-      "movieId": "39514"
+      "rating": 3,
+      "id": 2
+    },
+    {
+      "rating": 2,
+      "id": 3
+    },
+    {
+      "rating": 2,
+      "id": 4
+    },
+    {
+      "movieId": "39514",
+      "userId": 1,
+      "rating": 2,
+      "id": 5
     }
   ]
 }
