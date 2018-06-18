@@ -8,18 +8,19 @@ import {newRating} from './newRating'
 export const ExpandMovie = function (e) {
     let movie = ""
     let identifier = ""
+    let expandedElements = ""
     if (e) {
     identifier = e.target.parentElement.id
     fetch(`https://api.themoviedb.org/3/movie/${encodeURI(identifier)}?api_key=d1828a2d110346eee0cfdd42f858ba1e`)
     .then(result => result.json())
-    .then(result => movie = (
+    .then(result => {movie = (
         <div>
         <h2>{result.original_title}</h2>
         <p>{result.overview}</p>
         <p>{result.release_date}</p>
-        </div>)
+        </div>)}
     )
-    fetch(`https://api.themoviedb.org/3/movie/${identifier}/credits?api_key=d1828a2d110346eee0cfdd42f858ba1e`)
+    .then(result => {return(fetch(`https://api.themoviedb.org/3/movie/${identifier}/credits?api_key=d1828a2d110346eee0cfdd42f858ba1e`))})
     .then(result => result.json())
     .then(result => {
         movie = (
@@ -41,7 +42,7 @@ export const ExpandMovie = function (e) {
                     {movie}
                     <p>Screening Worthy:</p>
                     <p id={`average${identifier}`}>{result[0].average}</p>
-                    <form id={identifier} onSubmit={SubmitRating}>
+                    <form id={identifier} onSubmit={SubmitRating.bind(this)}>
                     <select id={`selection${identifier}`}>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -76,6 +77,9 @@ export const ExpandMovie = function (e) {
         </div>
         )}
     })
-    .then(result => {ReactDOM.render(result, document.getElementById(`${identifier}`).parentElement)})
+    .then(result => {this.setState({
+        components: result
+    })})
+    // .then(result => {this.forceUpdate()})
 }
 }
