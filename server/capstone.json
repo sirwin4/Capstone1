@@ -1,0 +1,25 @@
+{
+  "movies": [
+    {
+      "id": "39514",
+      "average": 0.004329004329004329,
+      "ratings": 24
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "fName": "Sean",
+      "lName": "Irwin",
+      "email": "sean@gmail.com",
+      "password": "123"
+    }
+  ],
+  "moviesUsers": [
+    {
+      "id": 1,
+      "userId": 1,
+      "movieId": "39514"
+    }
+  ]
+}

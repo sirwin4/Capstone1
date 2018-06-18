@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {SearchResult} from './searchResult'
+import {ExpandMovie} from './ExpandMovie'
 
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
     release: [],
     element: [],
     filmId: [],
-    confirmId: []
+    confirmId: ""
   }}
 
   handleChange = function (event) {
@@ -39,7 +39,7 @@ class App extends Component {
         let releaseArray = []
         let filmIdArray = []
         for (let index = 0; index < 5; index++) {
-          if(index <= result.total_results){
+          if(index <= result.total_results && result.results[index] !== undefined){
             movieArray.push(result.results[index].original_title)
             overviewArray.push(result.results[index].overview)
             releaseArray.push(result.results[index].release_date)
@@ -68,12 +68,14 @@ class App extends Component {
       for (let index = 0; index < this.state.movie.length; index++) {
         this.state.element.push(
           <div>
-            <a href="#" onClick={SearchResult}><h2 id={`${this.state.filmId[index]}`}>{this.state.movie[index]}</h2></a>
+            <h2 id={`${this.state.filmId[index]}`}><a href="#" onClick={ExpandMovie}>{this.state.movie[index]}</a></h2>
             <p>{this.state.overview[index]}</p>
             <p>{this.state.release[index]}</p>
+            <div></div>
           </div>
         )
       }
+      sessionStorage.setItem("login", "1")
       this.forceUpdate()
     }
   })
