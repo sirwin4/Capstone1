@@ -1,10 +1,10 @@
-import React from 'react'
-import {SubmitRating} from './datalogger.js'
+
 
 export const newRating = function (event) {
     event.preventDefault()
     let currentId = event.target.id
     let user = sessionStorage.getItem("login")
+    user = parseInt(user)
     let voted = document.getElementById(`selection${currentId}`)
     let vote = parseInt(voted.options[voted.selectedIndex].value)
     fetch(`http://localhost:5342/movies?id=${currentId}`)
@@ -38,9 +38,11 @@ export const newRating = function (event) {
         })})
       .then(response => {document.getElementById(`ratings${currentId}`).textContent = ratings})
       .then(response => {document.getElementById(`average${currentId}`).textContent = vote})
+      .then(response => {document.getElementById(`${currentId}`).reset()})
         }
         else {
             let ratings = document.getElementById(`ratings${currentId}`).textContent
+            ratings = parseInt(ratings)
             
             fetch(`http://localhost:5342/moviesUsers/${currentId}`, {
                 method: "PUT",
@@ -54,8 +56,9 @@ export const newRating = function (event) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ movieId: currentId, average: vote, ratings: ratings})
+                body: JSON.stringify({ id: currentId, average: vote, ratings: ratings})
             })
+            
             .then(response => {document.getElementById(`average${currentId}`).textContent = vote})
             .then(response => {document.getElementById(`${currentId}`).reset()})
         }

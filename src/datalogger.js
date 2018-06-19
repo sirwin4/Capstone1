@@ -1,9 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-
 export const SubmitRating = function (event) {
     event.preventDefault()
     let user = sessionStorage.getItem("login")
+    user = parseInt(user)
     let currentId = event.target.id
     let voted = document.getElementById(`selection${currentId}`)
     let vote = voted.options[voted.selectedIndex].value

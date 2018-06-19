@@ -16,15 +16,17 @@ class App extends Component {
     filmId: [],
     confirmId: "",
     components: "",
-    expand: false
+    indexer: 0
   }}
 
   handleChange = function (event) {
-    this.setState({term: event.target.value})
+    this.setState({term: event.target.value, indexer: 0})
+
   }.bind(this)
   
   getMovie = function (event) {
-    event.preventDefault()
+    if (event){
+    event.preventDefault()}
     this.setState({
       movie: [],
       overview: [],
@@ -41,7 +43,8 @@ class App extends Component {
         let overviewArray =[]
         let releaseArray = []
         let filmIdArray = []
-        for (let index = 0; index < 5; index++) {
+        let indexer = this.state.indexer
+        for (let index = indexer; index < (indexer + 5); index++) {
           if(index <= result.total_results && result.results[index] !== undefined){
             movieArray.push(result.results[index].original_title)
             overviewArray.push(result.results[index].overview)
@@ -84,6 +87,21 @@ class App extends Component {
   })
   }.bind(this)
   
+  showMore = function (e) {
+    e.preventDefault()
+    if (this.state.indexer < 15){
+    const state = this.state.indexer + 5
+    this.setState({indexer: state})
+    this.getMovie()
+  }}.bind(this)
+  showLess = function (e) {
+    e.preventDefault()
+    if (this.state. indexer > 5) {
+    const state = this.state.indexer - 5
+    this.setState({indexer: state})
+    this.getMovie()
+    }
+  }.bind(this)
 
 
   render() {
@@ -103,7 +121,12 @@ class App extends Component {
         <div>{this.state.element[2]}</div>
         <div>{this.state.element[3]}</div>
         <div>{this.state.element[4]}</div>
-        
+        <form onSubmit={this.showMore}>
+        <button type="Submit">Next Page</button>
+        </form>
+        <form onSubmit={this.showLess}>
+        <button type="Submit">Last Page</button>
+        </form>
       </div>
     );
   }

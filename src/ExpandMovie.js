@@ -1,14 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import {SubmitRating} from './datalogger.js'
 import {newRating} from './newRating'
-
-
 
 export const ExpandMovie = function (e) {
     let movie = ""
     let identifier = ""
-    let expandedElements = ""
+    this.setState({components: ""})
     if (e) {
     identifier = e.target.parentElement.id
     fetch(`https://api.themoviedb.org/3/movie/${encodeURI(identifier)}?api_key=d1828a2d110346eee0cfdd42f858ba1e`)
@@ -23,6 +20,7 @@ export const ExpandMovie = function (e) {
     .then(result => {return(fetch(`https://api.themoviedb.org/3/movie/${identifier}/credits?api_key=d1828a2d110346eee0cfdd42f858ba1e`))})
     .then(result => result.json())
     .then(result => {
+        if (result.cast.length >= 5){
         movie = (
             <div>
                 {movie}
@@ -32,6 +30,14 @@ export const ExpandMovie = function (e) {
                 <p>{result.cast[3].name} is {result.cast[3].character}</p>
                 <p>{result.cast[4].name} is {result.cast[4].character}</p>
             </div>)
+        }
+        else {
+            movie = (
+                <div>
+                    {movie}
+                    <p>{result.cast[0].name} is {result.cast[0].character}</p>
+                </div>)
+        }
     })
     .then(result => {return (fetch(`http://localhost:5342/movies?id=${identifier}`))})
     .then(result => result.json())

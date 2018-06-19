@@ -1,22 +1,29 @@
 {
   "movies": [
     {
-      "movieId": "39514",
-      "average": 2.5,
-      "ratings": "2",
-      "id": "39514"
+      "id": "39514",
+      "average": 2,
+      "ratings": 1
     },
     {
-      "movieId": "401981",
-      "average": 2.5,
-      "ratings": "2",
-      "id": "401981"
+      "id": "401981",
+      "average": 3,
+      "ratings": 1
     },
     {
-      "movieId": "44912",
-      "average": 1,
-      "ratings": "1",
-      "id": "44912"
+      "id": "13200",
+      "average": 4,
+      "ratings": 1
+    },
+    {
+      "id": "44912",
+      "average": 3,
+      "ratings": 1
+    },
+    {
+      "id": "22972",
+      "average": 3,
+      "ratings": 1
     }
   ],
   "users": [
@@ -38,31 +45,31 @@
   "moviesUsers": [
     {
       "movieId": "39514",
-      "userId": "1",
+      "userId": 2,
       "rating": 2,
       "id": 1
     },
     {
       "movieId": "401981",
-      "userId": 1,
+      "userId": 2,
       "rating": 2,
       "id": 2
     },
     {
-      "movieId": "44912",
-      "userId": 1,
-      "rating": 1,
+      "movieId": "13200",
+      "userId": 2,
+      "rating": 4,
       "id": 3
     },
     {
-      "movieId": "39514",
-      "userId": "2",
+      "movieId": "44912",
+      "userId": 2,
       "rating": 3,
       "id": 4
     },
     {
-      "movieId": "401981",
-      "userId": "2",
+      "movieId": "22972",
+      "userId": 2,
       "rating": 3,
       "id": 5
     }
