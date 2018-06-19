@@ -15,8 +15,7 @@ class App extends Component {
     element: [],
     filmId: [],
     confirmId: "",
-    components: "",
-    expand: false
+    components: ""
   }}
 
   handleChange = function (event) {
@@ -30,8 +29,7 @@ class App extends Component {
       overview: [],
       release: [],
       element: [],
-      filmId: [],
-      components: ""
+      filmId: []
     })
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=d1828a2d110346eee0cfdd42f858ba1e&language=en-US&query=${encodeURI(this.state.term)}&page=1&include_adult=false`) 
     .then(result => result.json())
@@ -71,14 +69,14 @@ class App extends Component {
       for (let index = 0; index < this.state.movie.length; index++) {
         this.state.element.push(
           <div>
-            <h2 id={`${this.state.filmId[index]}`}><a href="#" onClick={ExpandMovie.bind(this)}>{this.state.movie[index]}</a></h2>
+            <h2 id={`${this.state.filmId[index]}`}><a href="#" onClick={ExpandMovie}>{this.state.movie[index]}</a></h2>
             <p>{this.state.overview[index]}</p>
             <p>{this.state.release[index]}</p>
             <div>{this.state.components}</div>
           </div>
         )
       }
-      sessionStorage.setItem("login", 2)
+      sessionStorage.setItem("login", "1")
       this.forceUpdate()
     }
   })
@@ -97,13 +95,8 @@ class App extends Component {
         />
         <button type="Submit">Submit</button>
         </form>
-        <div>{this.state.components}</div>
-        <div>{this.state.element[0]}</div>
-        <div>{this.state.element[1]}</div>
-        <div>{this.state.element[2]}</div>
-        <div>{this.state.element[3]}</div>
-        <div>{this.state.element[4]}</div>
-        
+        <div>{this.state.element[0]}{this.state.element[1]}{this.state.element[2]}{this.state.element[3]}{this.state.element[4]}</div>
+        <div></div>
       </div>
     );
   }
