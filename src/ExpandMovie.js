@@ -80,6 +80,5 @@ export const ExpandMovie = function (e) {
     .then(result => {this.setState({
         components: result
     })})
-    // .then(result => {this.forceUpdate()})
 }
 }
