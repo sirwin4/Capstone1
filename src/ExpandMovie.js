@@ -76,6 +76,9 @@ export const ExpandMovie = function (e) {
         </div>
         )}
     })
-    .then(result => {ReactDOM.render(result, document.getElementById(`${identifier}`).parentElement)})
+    .then(result => {this.setState({
+        components: result
+    })})
+
 }
 }
