@@ -3,7 +3,7 @@
 export const newRating = function (event) {
     event.preventDefault()
     let currentId = event.target.id
-    let user = sessionStorage.getItem("login")
+    let user = this.props.activeUser
     user = parseInt(user)
     let voted = document.getElementById(`selection${currentId}`)
     let vote = parseInt(voted.options[voted.selectedIndex].value)

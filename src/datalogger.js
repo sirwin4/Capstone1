@@ -1,6 +1,6 @@
 export const SubmitRating = function (event) {
     event.preventDefault()
-    let user = sessionStorage.getItem("login")
+    let user = this.props.activeUser
     user = parseInt(user)
     let currentId = event.target.id
     let voted = document.getElementById(`selection${currentId}`)

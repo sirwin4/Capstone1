@@ -68,7 +68,7 @@ export const ExpandMovie = function (e) {
             {movie}
             <p>Screening Worthy:</p>
             <p id={`average${identifier}`}>No Ratings Yet</p>
-            <form id={identifier} onSubmit={newRating}>
+            <form id={identifier} onSubmit={newRating.bind(this)}>
             <select id={`selection${identifier}`}>
             <option value="1">1</option>
             <option value="2">2</option>
