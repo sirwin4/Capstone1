@@ -18,16 +18,22 @@ class Login extends Component {
         switch(id) {
         case "email":
             this.setState({ email: e.target.value})
+            break
         case "registerEmail":
             this.setState({ registerEmail: e.target.value})
+            break
         case "registerPassword":
             this.setState({ registerPassword: e.target.value})
+            break
         case "password":
             this.setState({ password: e.target.value}) 
+            break
          case "fName":
             this.setState({ fName: e.target.value})
+            break
         case "lName":
             this.setState({ lName: e.target.value})
+            break
         }
     }.bind(this)
 
@@ -37,7 +43,8 @@ class Login extends Component {
         .then(result => result.json())
         .then(result => {
                 if (result.length){
-                    this.props.setActiveUser(result[0].id)
+                    this.props.setActiveUser(result[0])
+
                 }
                 else {
                     window.alert("Sorry, we don't recognize this login!")
@@ -66,7 +73,7 @@ class Login extends Component {
                 })
                 .then(result => result.json())
                 .then(result => {
-                    this.props.setActiveUser(result.id)
+                    this.props.setActiveUser(result)
                 })
             }
             else {

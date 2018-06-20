@@ -55,6 +55,7 @@ export const ExpandMovie = function (e) {
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
+                    <option value="0">Remove Rating</option>
                     </select> 
                     <button type="Submit">Submit</button>
                     </form>
@@ -75,6 +76,7 @@ export const ExpandMovie = function (e) {
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
+            <option value="0">Remove Rating</option>
             </select> 
             <button type="Submit">Submit</button>
             </form>

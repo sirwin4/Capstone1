@@ -9,9 +9,7 @@ export const SubmitRating = function (event) {
     fetch(`http://localhost:5342/moviesUsers?userId=${user}&movieId=${currentId}`)
     .then(result => result.json())
     .then(result => {
-        console.log(result)
-        
-        if (result[0] === undefined) {
+        if (result[0] === undefined && vote !== 0) {
             let ratings = parseInt(document.getElementById(`ratings${currentId}`).textContent)
             let average = document.getElementById(`average${currentId}`).textContent
     average = parseInt(average)
@@ -42,25 +40,75 @@ export const SubmitRating = function (event) {
     .then(response => {document.getElementById(`${currentId}`).reset()})
     }
     else {
-        let ratings = document.getElementById(`ratings${currentId}`).textContent
-        let average = document.getElementById(`average${currentId}`).textContent
-        average = parseInt(average)
-        average = (((average * ratings) - result[0].rating) + vote)/ratings
-        fetch(`http://localhost:5342/moviesUsers/${result[0].id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ movieId: currentId, userId: user, rating: vote })
-        })  
-        fetch(`http://localhost:5342/movies/${currentId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ movieId: currentId, average: average, ratings: ratings})
-        })
-        .then(response => {document.getElementById(`average${currentId}`).textContent = average})
-        .then(response => {document.getElementById(`${currentId}`).reset()})
-    }
+        if (vote !== 0){
+            let ratings = document.getElementById(`ratings${currentId}`).textContent
+            let average = document.getElementById(`average${currentId}`).textContent
+            average = parseInt(average)
+            average = (((average * ratings) - result[0].rating) + vote)/ratings
+            fetch(`http://localhost:5342/moviesUsers/${result[0].id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ movieId: currentId, userId: user, rating: vote })
+            })  
+            fetch(`http://localhost:5342/movies/${currentId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ movieId: currentId, average: average, ratings: ratings})
+            })
+            .then(response => {document.getElementById(`average${currentId}`).textContent = average})
+            .then(response => {document.getElementById(`${currentId}`).reset()})
+        }
+        else if (document.getElementById(`ratings${currentId}`).textContent === "No Ratings Yet"){
+            window.alert("No Rating To Remove")
+        }
+        else {
+            let ratings = document.getElementById(`ratings${currentId}`).textContent
+            ratings = parseInt(ratings)
+            ratings = (ratings - 1)
+            let average = document.getElementById(`average${currentId}`).textContent
+            average = parseInt(average)
+            average = ((average * ratings) - result[0].rating)/(ratings)
+            if (ratings === 0) {
+                fetch(`http://localhost:5342/moviesUsers/${result[0].id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+
+                fetch(`http://localhost:5342/movies/${currentId}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+                })
+                .then(response => {document.getElementById(`ratings${currentId}`).textContent = "No Ratings Yet"})
+                .then(response => {document.getElementById(`average${currentId}`).textContent = "No Ratings Yet"})
+                .then(response => {document.getElementById(`${currentId}`).reset()})
+            }
+            else{
+            fetch(`http://localhost:5342/moviesUsers/${result[0].id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            fetch(`http://localhost:5342/movies/${currentId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ movieId: currentId, average: average, ratings: ratings})
+            })
+            .then(response => {document.getElementById(`ratings${currentId}`).textContent = ratings})
+            .then(response => {document.getElementById(`average${currentId}`).textContent = average})
+            .then(response => {document.getElementById(`${currentId}`).reset()})
+        }
+        }
+
+}
 })}

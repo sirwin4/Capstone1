@@ -13,10 +13,15 @@ class NavBar extends Component {
         e.preventDefault()
         this.props.setActiveUser(null)
     }.bind(this)
+
+    veiwer = function (e) {
+        e.preventDefault()
+        this.props.veiwChanger(e.target.id)
+    }.bind(this)
     
     navDisplay = function () {
         if (this.props.currentVeiw !== "login") {
-            return(<div><a href="#" id="application">Home</a> | <a href="#" id="logout" onClick={this.check}>Logout</a></div>)
+            return(<div><a href="#" id="application" onClick={this.veiwer}>Home</a> | <a href="#" onClick={this.check}>Logout</a> | <a href="#" id="profile" onClick={this.veiwer}>Profile</a></div>)
         }
     }
 
