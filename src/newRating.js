@@ -10,7 +10,6 @@ export const newRating = function (event) {
     fetch(`http://localhost:5342/movies?id=${currentId}`)
     .then(result => result.json())
     .then(result =>{
-
     if (result[0] === undefined && vote !== 0) {
     let ratings = 1
     fetch('http://localhost:5342/movies', {
@@ -41,23 +40,21 @@ export const newRating = function (event) {
       .then(response => {document.getElementById(`${currentId}`).reset()})
         }
         else if (vote === 0) {
-            let ratings = document.getElementById(`ratings${currentId}`).textContent = ratings
-            if (ratings === 0) {
-                window.alert("No Rating Yet")
+            let ratings = document.getElementById(`ratings${currentId}`).textContent
+            console.log(ratings)
+            if (ratings === "No Ratings Yet") {
+                window.alert("No Ratings Yet")
             }
-            else{
-                fetch(`http://localhost:5342/moviesUsers/${currentId}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })  
+            else{  
                 fetch(`http://localhost:5342/movies/${currentId}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json"
                     }
                 })
+                .then(response => {document.getElementById(`ratings${currentId}`).textContent = "No Ratings Yet"})
+                .then(response => {document.getElementById(`average${currentId}`).textContent = "No Ratings Yet"})
+                .then(response => {document.getElementById(`${currentId}`).reset()})
             }
         }
         else {

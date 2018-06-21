@@ -10,15 +10,14 @@ export const SubmitRating = function (event) {
     .then(result => result.json())
     .then(result => {
         if (result[0] === undefined && vote !== 0) {
-            let ratings = parseInt(document.getElementById(`ratings${currentId}`).textContent)
-            let average = document.getElementById(`average${currentId}`).textContent
-    average = parseInt(average)
-    average = ((average * ratings) + vote)/ (ratings + 1)
-    ratings = parseInt(ratings) + 1
-    fetch(`http://localhost:5342/movies/${currentId}`, {
-        method: "PUT",
+            let ratings = 1
+            let average = parseInt(vote)
+     
+    fetch(`http://localhost:5342/movies/`, {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ id: currentId, average: average, ratings: ratings })
     })
