@@ -41,7 +41,6 @@ export const newRating = function (event) {
         }
         else if (vote === 0) {
             let ratings = document.getElementById(`ratings${currentId}`).textContent
-            console.log(ratings)
             if (ratings === "No Ratings Yet") {
                 window.alert("No Ratings Yet")
             }

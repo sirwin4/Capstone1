@@ -50,6 +50,7 @@ class App extends Component {
           return (
             
               <article>
+                <h2>5CR33N1NGS</h2>
                 <NavBar veiwChanger={this.veiwChanger} setActiveUser={this.setActiveUser} currentVeiw={this.state.currentVeiw}/>
                   {this.view()}
               </article>
