@@ -9,15 +9,25 @@
       "id": "454291",
       "average": 4,
       "ratings": 1
+    },
+    {
+      "id": "39514",
+      "average": 3,
+      "ratings": 1
+    },
+    {
+      "id": "146216",
+      "average": 2,
+      "ratings": 1
     }
   ],
   "users": [
     {
-      "id": 1,
-      "fName": "Sean",
-      "lName": "Irwin",
       "email": "sean@gmail.com",
-      "password": 123
+      "password": 123,
+      "fName": "Shawn",
+      "lName": "Irwin",
+      "id": 1
     },
     {
       "id": 2,
@@ -39,6 +49,18 @@
       "userId": 1,
       "rating": 4,
       "id": 3
+    },
+    {
+      "movieId": "39514",
+      "userId": 1,
+      "rating": 2,
+      "id": 4
+    },
+    {
+      "movieId": "146216",
+      "userId": 1,
+      "rating": 2,
+      "id": 5
     }
   ]
 }

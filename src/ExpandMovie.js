@@ -10,8 +10,10 @@ export const ExpandMovie = function (e) {
     identifier = e.target.parentElement.id
     fetch(`https://api.themoviedb.org/3/movie/${encodeURI(identifier)}?api_key=d1828a2d110346eee0cfdd42f858ba1e`)
     .then(result => result.json())
-    .then(result => {movie = (
-        <div>
+    .then(result => {
+        document.getElementsByTagName("Body")[0].setAttribute("background", `https://image.tmdb.org/t/p/original/${result.backdrop_path}`)
+        movie = (
+        <div id="mainMovieDiv">
         <h2>{result.original_title}</h2>
         <p>{result.overview}</p>
         <p>{result.release_date}</p>
@@ -64,7 +66,9 @@ export const ExpandMovie = function (e) {
                 </div>
             )
         }
-        else {return(
+        else {
+            return(
+            
             <div>
             {movie}
             <p>Screening Worthy:</p>
@@ -86,7 +90,8 @@ export const ExpandMovie = function (e) {
         )}
     })
     .then(result => {this.setState({
-        components: result
+        components: result,
+        expandedId: identifier
     })})
 }
 }

@@ -3,6 +3,7 @@ import Application from "./Application"
 import Login from './login'
 import NavBar from './navBar'
 import Profile from './profile'
+import "./App.css"
 
 class App extends Component {
   constructor(props){
@@ -50,7 +51,7 @@ class App extends Component {
           return (
             
               <article>
-                <h2>5CR33N1NGS</h2>
+                <h2 class="inlineBlock">5CR33N1NGS</h2>
                 <NavBar veiwChanger={this.veiwChanger} setActiveUser={this.setActiveUser} currentVeiw={this.state.currentVeiw}/>
                   {this.view()}
               </article>

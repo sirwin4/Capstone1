@@ -21,7 +21,7 @@ class NavBar extends Component {
     
     navDisplay = function () {
         if (this.props.currentVeiw !== "login") {
-            return(<div><a href="#" id="application" onClick={this.veiwer}>Home</a> | <a href="#" onClick={this.check}>Logout</a> | <a href="#" id="profile" onClick={this.veiwer}>Profile</a></div>)
+            return(<div class="inlineBlock"><a href="#" id="application" onClick={this.veiwer}>Home</a> | <a href="#" onClick={this.check}>Logout</a> | <a href="#" id="profile" onClick={this.veiwer}>Profile</a></div>)
         }
     }
 
