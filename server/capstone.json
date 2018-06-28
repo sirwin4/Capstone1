@@ -19,6 +19,16 @@
       "id": "146216",
       "average": 2,
       "ratings": 1
+    },
+    {
+      "id": "947",
+      "average": 5,
+      "ratings": 1
+    },
+    {
+      "id": "168064",
+      "average": 3,
+      "ratings": 1
     }
   ],
   "users": [
@@ -61,6 +71,18 @@
       "userId": 1,
       "rating": 2,
       "id": 5
+    },
+    {
+      "movieId": "947",
+      "userId": 1,
+      "rating": 5,
+      "id": 6
+    },
+    {
+      "movieId": "168064",
+      "userId": 1,
+      "rating": 1,
+      "id": 7
     }
   ]
 }

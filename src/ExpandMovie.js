@@ -7,6 +7,7 @@ export const ExpandMovie = function (e) {
     let identifier = ""
     this.setState({components: ""})
     if (e) {
+    e.preventDefault()
     identifier = e.target.parentElement.id
     fetch(`https://api.themoviedb.org/3/movie/${encodeURI(identifier)}?api_key=d1828a2d110346eee0cfdd42f858ba1e`)
     .then(result => result.json())

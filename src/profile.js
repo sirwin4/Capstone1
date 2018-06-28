@@ -16,6 +16,7 @@ class Profile extends Component {
 
     handleChange = function (e) {
         e.preventDefault()
+        //stores changes in proper location when info added to input fields based jsx id
         let userValue = e.target.id
         switch (userValue){
             case "newFName":
@@ -37,6 +38,7 @@ class Profile extends Component {
 
     deleteAccount = function (e) {
         e.preventDefault()
+        //remove account given correct information is provided
         if (this.state.deletePassword === this.props.userInfo.password) {
         fetch(`http://localhost:5342/users/${this.props.userInfo.id}`, {
             method: "DELETE",
@@ -51,6 +53,7 @@ class Profile extends Component {
     edit = function (e){
         if (e) {
             e.preventDefault()
+            //pull account info from db and create prefilled fields with user info to be edited
             this.setState({ user: (
                 <div>
                 <form onSubmit={this.updateInfo}>
@@ -72,6 +75,7 @@ class Profile extends Component {
     }.bind(this)
     updateInfo = function (e) {
         e.preventDefault()
+        //sends account updates to json file 
         fetch(`http://localhost:5342/users/${this.props.userInfo.id}`, {
             method: "PUT",
             headers: {

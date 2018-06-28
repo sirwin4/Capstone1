@@ -144,10 +144,12 @@ class Application extends Component {
     
     
       render() {
-        debugger
-        if (this.state.components !== ""){document.getElementById(`div-${this.state.expandedId}`).append(this.state.components)}
+        
+       
+   
         return (
           <div className="App">
+            {this.state.components}
             <form onSubmit={this.getMovie}>
             <input
               type="text"
