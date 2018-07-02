@@ -1,27 +1,33 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import {SubmitRating} from './datalogger.js'
 import {newRating} from './newRating'
 
-
-
 export const ExpandMovie = function (e) {
+    //uses state to track pages of dom components created from movie search results from API
     let movie = ""
     let identifier = ""
+    
     if (e) {
+    e.preventDefault()
     identifier = e.target.parentElement.id
+    if (identifier !== this.state.expandedId){
+    this.setState({components: ""})
     fetch(`https://api.themoviedb.org/3/movie/${encodeURI(identifier)}?api_key=d1828a2d110346eee0cfdd42f858ba1e`)
     .then(result => result.json())
-    .then(result => movie = (
-        <div>
+    .then(result => {
+        document.getElementsByTagName("Body")[0].setAttribute("background", `https://image.tmdb.org/t/p/original/${result.backdrop_path}`)
+        document.body.style.backgroundPosition = "top center"
+        movie = (
+        <div id="mainMovieDiv">
         <h2>{result.original_title}</h2>
         <p>{result.overview}</p>
         <p>{result.release_date}</p>
-        </div>)
+        </div>)}
     )
-    fetch(`https://api.themoviedb.org/3/movie/${identifier}/credits?api_key=d1828a2d110346eee0cfdd42f858ba1e`)
+    .then(result => {return(fetch(`https://api.themoviedb.org/3/movie/${identifier}/credits?api_key=d1828a2d110346eee0cfdd42f858ba1e`))})
     .then(result => result.json())
     .then(result => {
+        if (result.cast.length >= 5){
         movie = (
             <div>
                 {movie}
@@ -31,6 +37,14 @@ export const ExpandMovie = function (e) {
                 <p>{result.cast[3].name} is {result.cast[3].character}</p>
                 <p>{result.cast[4].name} is {result.cast[4].character}</p>
             </div>)
+        }
+        else {
+            movie = (
+                <div>
+                    {movie}
+                    <p>{result.cast[0].name} is {result.cast[0].character}</p>
+                </div>)
+        }
     })
     .then(result => {return (fetch(`http://localhost:5342/movies?id=${identifier}`))})
     .then(result => result.json())
@@ -41,13 +55,14 @@ export const ExpandMovie = function (e) {
                     {movie}
                     <p>Screening Worthy:</p>
                     <p id={`average${identifier}`}>{result[0].average}</p>
-                    <form id={identifier} onSubmit={SubmitRating}>
+                    <form id={identifier} onSubmit={SubmitRating.bind(this)}>
                     <select id={`selection${identifier}`}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
+                    <option value="0">Remove Rating</option>
                     </select> 
                     <button type="Submit">Submit</button>
                     </form>
@@ -56,18 +71,21 @@ export const ExpandMovie = function (e) {
                 </div>
             )
         }
-        else {return(
+        else {
+            return(
+            
             <div>
             {movie}
             <p>Screening Worthy:</p>
             <p id={`average${identifier}`}>No Ratings Yet</p>
-            <form id={identifier} onSubmit={newRating}>
+            <form id={identifier} onSubmit={newRating.bind(this)}>
             <select id={`selection${identifier}`}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
+            <option value="0">Remove Rating</option>
             </select> 
             <button type="Submit">Submit</button>
             </form>
@@ -77,8 +95,9 @@ export const ExpandMovie = function (e) {
         )}
     })
     .then(result => {this.setState({
-        components: result
+        components: result,
+        expandedId: identifier
     })})
-
+    }
 }
 }
