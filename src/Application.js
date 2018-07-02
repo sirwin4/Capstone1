@@ -69,10 +69,11 @@ class Application extends Component {
             }
           else if (result.total_results !== 0){
             let numerator = this.state.indexer - ((this.state.indexerReference - 1) * 25)
-            let secondIndexer = numerator + 5
+            let secondIndexer = numerator + 4
             
             for (let index = numerator; index <= secondIndexer; index++) {
-              if(result.results[index] !== undefined){
+              if(result.results[index] !== undefined ){
+                
                 this.state.movie.push(result.results[index].original_title)
                 this.state.overview.push(result.results[index].overview)
                 this.state.release.push(result.results[index].release_date)
@@ -99,6 +100,7 @@ class Application extends Component {
 
           if(this.state.movie.length === this.state.overview.length && this.state.overview.length === this.state.release.length){
           for (let index = this.state.indexer; index < this.state.indexer + 5; index++) {
+            console.log(this.state.movie)
             this.state.element.push(
               <div id={`div-${this.state.filmId[index]}`}>
                 <h2 id={`${this.state.filmId[index]}`}><a href="#" onClick={ExpandMovie.bind(this)}>{this.state.movie[index]}</a></h2>
@@ -118,11 +120,15 @@ class Application extends Component {
       
       showMore = function (e) {
         e.preventDefault()
+        document.getElementsByTagName("Body")[0].setAttribute("background", '')
         const newIndexer = this.state.indexer + 5
         const newIndexer2 = this.state.indexer2 + 5
         const newIndexer3 = this.state.indexer3 + 5
         const newIndexer4 = this.state.indexer4 + 5
         const newIndexer5 = this.state.indexer5 + 5
+        console.log(this.state.indexer5)
+        console.log(this.state.element.length)
+        if(this.state.indexer5 === (this.state.element.length - 1)){
         this.getMovie()
         this.setState({
             indexer: newIndexer,
@@ -131,14 +137,34 @@ class Application extends Component {
             indexer4: newIndexer4,
             indexer5: newIndexer5
         })
+        }
+        else{
+         this.setState({
+            indexer: newIndexer,
+            indexer2: newIndexer2,
+            indexer3: newIndexer3,
+            indexer4: newIndexer4,
+            indexer5: newIndexer5
+        })
+         console.log(this.state.indexer5)
+        console.log(this.state.element.length)
+        }
       }.bind(this)
 
       showLess = function (e) {
         e.preventDefault()
+        document.getElementsByTagName("Body")[0].setAttribute("background", '')
         if (this.state. indexer > 0) {
         const updatedIndexer = this.state.indexer - 5
-        this.setState({indexer: updatedIndexer})
-        this.getMovie()
+        const updatedIndexer2 = this.state.indexer2 - 5
+        const updatedIndexer3 = this.state.indexer3 - 5
+        const updatedIndexer4 = this.state.indexer4 - 5
+        const updatedIndexer5 = this.state.indexer5 - 5
+        this.setState({indexer: updatedIndexer,
+                  indexer2: updatedIndexer2,
+                  indexer3: updatedIndexer3,
+                  indexer4: updatedIndexer4,
+                  indexer5: updatedIndexer5})
         }
       }.bind(this)
     

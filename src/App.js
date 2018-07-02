@@ -5,6 +5,7 @@ import NavBar from './navBar'
 import Profile from './profile'
 import "./App.css"
 import UserRatings from './userRatings'
+import {ExpandMovie} from './ExpandMovie'
 
 class App extends Component {
   constructor(props){
@@ -13,10 +14,12 @@ class App extends Component {
     this.state = {
       activeUser: sessionStorage.getItem("activeUser"),
       currentVeiw: "login",
-      userInfo: ""
+      userInfo: "",
+      expandMovie: ExpandMovie
       }}
 
       setActiveUser = function (val){
+        
         if (val !== null) {
           // when given a value, add to login info to storage and move to main page
           sessionStorage.setItem("activeUser", val.id)
@@ -31,7 +34,13 @@ class App extends Component {
 
       veiwChanger = function (val) {
         //selects page to display
+        if (this.state.currentVeiw === "application") {
+          document.getElementsByTagName("Body")[0].setAttribute("background", '')
+          this.setState({ currentVeiw: val})
+        }
+        else{
          this.setState({ currentVeiw: val})
+        }
       }.bind(this)
   
       view = function (){
@@ -55,7 +64,6 @@ class App extends Component {
         }
     
       render() {
-        
           return (
             
               <article>

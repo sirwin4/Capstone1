@@ -11,12 +11,22 @@ class UserRatings extends Component {
           userInfo: this.props.userInfo,
           components: "",
           returned: "",
-          expandFunction: ExpandMovie
+          idList: "",
+          expandedId: ""
+
       }}
     list = ""
     movies = []
     ok = ""
     
+    editing = function () {
+        this.movies.forEach(element => {
+            console.log(document.getElementById(`anchor-${element.id}`))
+            document.getElementById(`anchor-${element.id}`).onclick = ExpandMovie.bind(this)
+            
+        });
+        }.bind(this)
+        
     
     componentDidMount(){
         let final = ""
@@ -39,7 +49,7 @@ class UserRatings extends Component {
                     joined += 
                     `
                     <div id='div-${this.movies[index].id}'>
-                    <h2 id='${this.movies[index].id}'>${this.movies[index].original_title}</h2>
+                    <h2 id='${this.movies[index].id}'><a id='anchor-${this.movies[index].id}' href="#">${this.movies[index].original_title}</a></h2>
                     <p>Rating: ${this.list[index].rating}</p>
                     <p>${this.movies[index].overview}</p>
                     <p>${this.movies[index].release_date}</p>
@@ -51,17 +61,19 @@ class UserRatings extends Component {
                     this.setState({ returned:result })
                 })
             })
-        console.log(this.state.returned)
         })
-    return(this.ok)
+    this.editing
     }
     
     
     render(){
     return (
-        <div dangerouslySetInnerHTML={{__html:this.state.returned}}>      
+        <div>
+         {this.state.components}
+        <p><a href="#" onClick={this.editing}>ok</a></p>
+        <div id="userRatings" dangerouslySetInnerHTML={{__html:this.state.returned}}></div>    
         </div>
-      )
+    )
 }
 }
 

@@ -3,6 +3,7 @@ import {SubmitRating} from './datalogger.js'
 import {newRating} from './newRating'
 
 export const ExpandMovie = function (e) {
+    //uses state to track pages of dom components created from movie search results from API
     let movie = ""
     let identifier = ""
     this.setState({components: ""})

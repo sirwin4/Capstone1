@@ -83,6 +83,8 @@ class Profile extends Component {
             },
             body: JSON.stringify({ id: this.props.id, email: this.state.email, password: this.state.password, fName: this.state.fName, lName: this.state.lName })
         })
+        .then(result => result.json())
+        .then(result =>{this.props.setActiveUser(result)})
     }.bind(this)
 
     render(){
