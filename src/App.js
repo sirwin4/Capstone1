@@ -56,7 +56,7 @@ class App extends Component {
                   case "login":
                   return <Login setActiveUser={this.setActiveUser}/>
                   case "userRatings":
-                  return <UserRatings userInfo={this.state.userInfo} setActiveUser={this.setActiveUser} />
+                  return <UserRatings activeUser={this.state.activeUser} userInfo={this.state.userInfo} setActiveUser={this.setActiveUser} />
                   case "profile":
                   return <Profile setActiveUser={this.setActiveUser} userInfo={this.state.userInfo}/>
               }
@@ -65,7 +65,7 @@ class App extends Component {
     
       render() {
           return (
-            
+              
               <article>
                 <h2 className="inlineBlock">5CR33N1NGS</h2>
                 <NavBar veiwChanger={this.veiwChanger} setActiveUser={this.setActiveUser} currentVeiw={this.state.currentVeiw}/>

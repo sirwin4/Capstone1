@@ -49,6 +49,7 @@ class Application extends Component {
           this.setState({
             components: ""
           })
+        
         fetch(`https://api.themoviedb.org/3/search/movie?api_key=d1828a2d110346eee0cfdd42f858ba1e&language=en-US&query=${encodeURI(this.state.term)}&page=${this.state.indexerReference}&include_adult=false`) 
         .then(result => result.json())
         .then(result => {
@@ -64,16 +65,16 @@ class Application extends Component {
                   indexer2: 1,
                   indexer3: 2,
                   indexer4: 3,
-                  indexer5: 4
+                  indexer5: 4,
+                  indexerReference: 1
                 })
             }
           else if (result.total_results !== 0){
-            let numerator = this.state.indexer - ((this.state.indexerReference - 1) * 25)
+            let numerator = this.state.indexer - ((this.state.indexerReference - 1) * 20)
             let secondIndexer = numerator + 4
             
             for (let index = numerator; index <= secondIndexer; index++) {
               if(result.results[index] !== undefined ){
-                
                 this.state.movie.push(result.results[index].original_title)
                 this.state.overview.push(result.results[index].overview)
                 this.state.release.push(result.results[index].release_date)
@@ -96,8 +97,7 @@ class Application extends Component {
           }
         }
         )
-        .then(result => {
-
+        .then(result => { 
           if(this.state.movie.length === this.state.overview.length && this.state.overview.length === this.state.release.length){
           for (let index = this.state.indexer; index < this.state.indexer + 5; index++) {
             console.log(this.state.movie)
@@ -106,13 +106,15 @@ class Application extends Component {
                 <h2 id={`${this.state.filmId[index]}`}><a href="#" onClick={ExpandMovie.bind(this)}>{this.state.movie[index]}</a></h2>
                 <p>{this.state.overview[index]}</p>
                 <p>{this.state.release[index]}</p>
-                <div>{this.state.components}</div>
               </div>
             )
           }
-          if (this.state.indexer !== 0 && this.state.indexer % 20 === 0){
-              this.setState({ indexerReference: this.state.indexerReference + 1 })
+          if (this.state.indexer !== 0 && (this.state.indexer+5) % 20 === 0){
+              this.setState({ indexerReference: this.state.indexerReference + 1,
+            })
+            console.log("fire")
           }
+
           this.forceUpdate()
         }
       })
@@ -126,9 +128,9 @@ class Application extends Component {
         const newIndexer3 = this.state.indexer3 + 5
         const newIndexer4 = this.state.indexer4 + 5
         const newIndexer5 = this.state.indexer5 + 5
-        console.log(this.state.indexer5)
-        console.log(this.state.element.length)
-        if(this.state.indexer5 === (this.state.element.length - 1)){
+        // console.log(this.state.indexer5)
+        // console.log(this.state.element.length)
+        // if(this.state.indexer5 === (this.state.element.length - 1)){
         this.getMovie()
         this.setState({
             indexer: newIndexer,
@@ -137,18 +139,16 @@ class Application extends Component {
             indexer4: newIndexer4,
             indexer5: newIndexer5
         })
-        }
-        else{
-         this.setState({
-            indexer: newIndexer,
-            indexer2: newIndexer2,
-            indexer3: newIndexer3,
-            indexer4: newIndexer4,
-            indexer5: newIndexer5
-        })
-         console.log(this.state.indexer5)
-        console.log(this.state.element.length)
-        }
+        // }
+        // else {
+        //  this.setState({
+        //     indexer: newIndexer,
+        //     indexer2: newIndexer2,
+        //     indexer3: newIndexer3,
+        //     indexer4: newIndexer4,
+        //     indexer5: newIndexer5
+        // })
+        // }
       }.bind(this)
 
       showLess = function (e) {
@@ -175,7 +175,7 @@ class Application extends Component {
    
         return (
           <div className="App">
-            {this.state.components}
+            
             <form onSubmit={this.getMovie}>
             <input
               type="text"
@@ -184,7 +184,7 @@ class Application extends Component {
             />
             <button type="Submit">Submit</button>
             </form>
-            <div>{this.state.components}</div>
+            {this.state.components}
             <div>{this.state.element[this.state.indexer]}</div>
             <div>{this.state.element[this.state.indexer2]}</div>
             <div>{this.state.element[this.state.indexer3]}</div>

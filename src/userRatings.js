@@ -70,7 +70,7 @@ class UserRatings extends Component {
     return (
         <div>
          {this.state.components}
-        <p><a href="#" onClick={this.editing}>ok</a></p>
+        <p><a href="#" onClick={this.editing}>Edit</a></p>
         <div id="userRatings" dangerouslySetInnerHTML={{__html:this.state.returned}}></div>    
         </div>
     )

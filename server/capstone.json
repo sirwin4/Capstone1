@@ -16,9 +16,10 @@
       "ratings": 1
     },
     {
-      "id": "146216",
+      "movieId": "146216",
       "average": 2,
-      "ratings": 1
+      "ratings": "1",
+      "id": "146216"
     },
     {
       "id": "947",
@@ -35,7 +36,7 @@
     {
       "email": "sean@gmail.com",
       "password": 123,
-      "fName": "Sean",
+      "fName": "Shawn",
       "lName": "Irwin",
       "id": 1
     },

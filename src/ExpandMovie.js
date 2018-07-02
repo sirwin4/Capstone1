@@ -6,14 +6,17 @@ export const ExpandMovie = function (e) {
     //uses state to track pages of dom components created from movie search results from API
     let movie = ""
     let identifier = ""
-    this.setState({components: ""})
+    
     if (e) {
     e.preventDefault()
     identifier = e.target.parentElement.id
+    if (identifier !== this.state.expandedId){
+    this.setState({components: ""})
     fetch(`https://api.themoviedb.org/3/movie/${encodeURI(identifier)}?api_key=d1828a2d110346eee0cfdd42f858ba1e`)
     .then(result => result.json())
     .then(result => {
         document.getElementsByTagName("Body")[0].setAttribute("background", `https://image.tmdb.org/t/p/original/${result.backdrop_path}`)
+        document.body.style.backgroundPosition = "top center"
         movie = (
         <div id="mainMovieDiv">
         <h2>{result.original_title}</h2>
@@ -95,5 +98,6 @@ export const ExpandMovie = function (e) {
         components: result,
         expandedId: identifier
     })})
+    }
 }
 }
