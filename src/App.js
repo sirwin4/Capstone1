@@ -6,6 +6,9 @@ import Profile from './profile'
 import "./App.css"
 import UserRatings from './userRatings'
 import {ExpandMovie} from './ExpandMovie'
+import Trending from "./trending"
+import NowPlaying from "./nowplaying"
+import PopularMovies from "./popularmovies"
 
 class App extends Component {
   constructor(props){
@@ -53,6 +56,12 @@ class App extends Component {
               switch(this.state.currentVeiw){
                   case "application":
                   return <Application activeUser={this.state.activeUser}/>
+                  case "trending":
+                  return <Trending activeUser={this.state.activeUser}/>
+                  case "nowPlaying":
+                  return <NowPlaying activeUser={this.state.activeUser}/>
+                  case "popularMovies":
+                  return <PopularMovies activeUser={this.state.activeUser}/>
                   case "login":
                   return <Login setActiveUser={this.setActiveUser}/>
                   case "userRatings":

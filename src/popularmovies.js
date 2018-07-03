@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {ExpandMovie} from './ExpandMovie'
 
 
-class Application extends Component {
+class PopularMovies extends Component {
     constructor(props){
       super(props)
     
       this.state = {
-        term: "",
+        term: `movie/popular?api_key=d1828a2d110346eee0cfdd42f858ba1e&language=en-US`,
         movie: [],
         overview: [],
         release: [],
@@ -23,10 +23,10 @@ class Application extends Component {
         expandedId: ""
       }}
      
-      handleChange = function (event) {
-        this.setState({term: `search/movie?api_key=d1828a2d110346eee0cfdd42f858ba1e&language=en-US&query=${event.target.value}`, indexer: 0})
+      TrendingFunction = function (event) {
+        this.setState({term: `movie/top_rated?api_key=d1828a2d110346eee0cfdd42f858ba1e&language=en-US`, indexer: 0}) 
       }.bind(this)
-      
+
       getMovie = function (event) {
         if (event){
         event.preventDefault()
@@ -165,6 +165,9 @@ class Application extends Component {
           })
         }
       }.bind(this)
+      componentDidMount(){
+        this.getMovie()
+      }
     
     
       render() {
@@ -173,15 +176,7 @@ class Application extends Component {
    
         return (
           <div className="App">
-            
-            <form onSubmit={this.getMovie}>
-            <input
-              type="text"
-              placeholder="Enter Film Name"
-              onChange={this.handleChange}
-            />
-            <button type="Submit">Submit</button>
-            </form>
+            <h2>Popular Films</h2>
             {this.state.components}
             <div>{this.state.element[this.state.indexer]}</div>
             <div>{this.state.element[this.state.indexer2]}</div>
@@ -199,4 +194,4 @@ class Application extends Component {
       }
     }
   
-  export default Application;
+  export default PopularMovies;

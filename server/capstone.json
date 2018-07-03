@@ -30,6 +30,96 @@
       "id": "168064",
       "average": 3,
       "ratings": 1
+    },
+    {
+      "id": "401981",
+      "average": 2,
+      "ratings": 1
+    },
+    {
+      "id": "24595",
+      "average": 3,
+      "ratings": 1
+    },
+    {
+      "id": "311324",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "9410",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "14320",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "444410",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "428658",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "914",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "14047",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "9994",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "68728",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "331588",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "351286",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "427641",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "299536",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "135397",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "447332",
+      "average": 1,
+      "ratings": 1
+    },
+    {
+      "id": "284054",
+      "average": 1,
+      "ratings": 1
     }
   ],
   "users": [
@@ -46,6 +136,13 @@
       "lName": "Erwin",
       "email": "shaun@gmail.com",
       "password": "123"
+    },
+    {
+      "email": "ok@gmail.com",
+      "fName": "ok",
+      "lName": "ok",
+      "password": "123",
+      "id": 3
     }
   ],
   "moviesUsers": [
@@ -84,6 +181,114 @@
       "userId": 1,
       "rating": 1,
       "id": 7
+    },
+    {
+      "movieId": "401981",
+      "userId": 1,
+      "rating": 2,
+      "id": 8
+    },
+    {
+      "movieId": "24595",
+      "userId": 1,
+      "rating": 3,
+      "id": 9
+    },
+    {
+      "movieId": "311324",
+      "userId": 1,
+      "rating": 1,
+      "id": 10
+    },
+    {
+      "movieId": "9410",
+      "userId": 1,
+      "rating": 1,
+      "id": 11
+    },
+    {
+      "movieId": "14320",
+      "userId": 1,
+      "rating": 1,
+      "id": 12
+    },
+    {
+      "movieId": "444410",
+      "userId": 1,
+      "rating": 1,
+      "id": 13
+    },
+    {
+      "movieId": "428658",
+      "userId": 1,
+      "rating": 1,
+      "id": 14
+    },
+    {
+      "movieId": "914",
+      "userId": 1,
+      "rating": 1,
+      "id": 15
+    },
+    {
+      "movieId": "14047",
+      "userId": 1,
+      "rating": 1,
+      "id": 16
+    },
+    {
+      "movieId": "9994",
+      "userId": 1,
+      "rating": 1,
+      "id": 17
+    },
+    {
+      "movieId": "68728",
+      "userId": 1,
+      "rating": 1,
+      "id": 18
+    },
+    {
+      "movieId": "331588",
+      "userId": 1,
+      "rating": 1,
+      "id": 19
+    },
+    {
+      "movieId": "351286",
+      "userId": 1,
+      "rating": 1,
+      "id": 20
+    },
+    {
+      "movieId": "427641",
+      "userId": 1,
+      "rating": 1,
+      "id": 21
+    },
+    {
+      "movieId": "299536",
+      "userId": 1,
+      "rating": 1,
+      "id": 22
+    },
+    {
+      "movieId": "135397",
+      "userId": 1,
+      "rating": 1,
+      "id": 23
+    },
+    {
+      "movieId": "447332",
+      "userId": 1,
+      "rating": 1,
+      "id": 24
+    },
+    {
+      "movieId": "284054",
+      "userId": 1,
+      "rating": 1,
+      "id": 25
     }
   ]
 }
