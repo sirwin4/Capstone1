@@ -40,7 +40,7 @@ export const newRating = function (event) {
       .then(response => {document.getElementById(`${currentId}`).reset()})
         }
         else if (vote === 0) {
-            let ratings = document.getElementById(`ratings${currentId}`).textContent
+            let ratings = parseInt(document.getElementById(`ratings${currentId}`).textContent)
             if (ratings === "No Ratings Yet") {
                 window.alert("No Ratings Yet")
             }

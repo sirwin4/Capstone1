@@ -18,7 +18,7 @@ class App extends Component {
     this.state = {
       activeUser: sessionStorage.getItem("activeUser"),
       currentVeiw: "",
-      userInfo: "",
+      userInfo: undefined,
       expandMovie: ExpandMovie
       }}
 
@@ -54,7 +54,7 @@ class App extends Component {
           //send to login if no user stored
           return(<Login setActiveUser={this.setActiveUser}/>)
         }
-        else if(this.state.userInfo === ""){
+        else if(this.state.userInfo === undefined){
           this.setActiveUser(sessionStorage.getItem("activeUser"))
         }
         else {
@@ -75,7 +75,7 @@ class App extends Component {
                   case "userRatings":
                   return <UserRatings userInfo={this.state.userInfo} setActiveUser={this.setActiveUser} />
                   case "profile":
-                  return <Profile setActiveUser={this.setActiveUser} userInfo={this.state.userInfo}/>
+                  return <Profile setActiveUser={this.setActiveUser} activeUser={this.setActiveUser} userInfo={this.state.userInfo}/>
               }
           }
         }.bind(this)

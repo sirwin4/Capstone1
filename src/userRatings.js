@@ -63,6 +63,7 @@ class UserRatings extends Component {
             }
             )
             .then(result =>{
+                console.log(this.movies)
                 let joined = ""
                 for (let index = 0; index < this.movies.length; index++) {
                 joined += 

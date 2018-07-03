@@ -26,7 +26,7 @@ class Home extends Component {
         <div>
         <h1>/Screenings/</h1>
         <h3>Welcome, {this.state.fName} {this.state.lName}</h3>
-        <p>There are plenty of places to debate what the best movie out there is and every rating you find has it's place in helping you know what the movie brings to the table. Easy enough, right? This is not a movie rating site. A 5/5 here might be an absolutely terrible film, but that probably means it makes up for it with all the screen flooding special effects and bass bottoming audio you could want. That is what it's care about.</p>
+        <p>There are plenty of places to debate what the best movie out there is and every rating you find has it's place in helping you know what the movie brings to the table. Easy enough, right? This is not a movie rating site. A 5/5 here might have a terrible rating on other sites, but that means it makes up for it with all the screen flooding special effects and bass bottoming audio you could want. That is what this site is about.</p>
         </div>
         )
     }

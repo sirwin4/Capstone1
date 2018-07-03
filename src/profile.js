@@ -88,6 +88,7 @@ class Profile extends Component {
     }.bind(this)
 
     render(){
+        
         return(
             <div>
                 <p id="fNameInfo">{this.props.userInfo.fName}</p>

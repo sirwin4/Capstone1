@@ -3,15 +3,16 @@ export const SubmitRating = function (event) {
     let user = this.props.activeUser
     user = parseInt(user)
     let currentId = event.target.id
+    let ratingsCheck = document.getElementById(`ratings${currentId}`).textContent
     let voted = document.getElementById(`selection${currentId}`)
     let vote = voted.options[voted.selectedIndex].value
     vote = parseInt(vote)
     fetch(`http://localhost:5342/moviesUsers?userId=${user}&movieId=${currentId}`)
     .then(result => result.json())
     .then(result => {
-        if (result[0] === undefined && vote !== 0) {
+        if (result[0] === undefined && vote !== 0 && ratingsCheck === "No Ratings Yet") {
             let ratings = 1
-            let average = parseInt(vote)
+            let average = vote
      
     fetch(`http://localhost:5342/movies/`, {
         method: 'POST',
@@ -39,8 +40,37 @@ export const SubmitRating = function (event) {
     .then(response => {document.getElementById(`${currentId}`).reset()})
     }
     else {
-        if (vote !== 0){
-            let ratings = document.getElementById(`ratings${currentId}`).textContent
+        if (vote !== 0  && result[0] === undefined){
+            let ratings = parseInt(document.getElementById(`ratings${currentId}`).textContent)
+            let average = document.getElementById(`average${currentId}`).textContent
+            average = parseInt(average)
+            average = ((average * ratings) + vote) / (ratings + 1)
+            ratings = ratings + 1
+            fetch(`http://localhost:5342/moviesUsers`, {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    movieId: currentId,
+                    userId: user,
+                    rating: vote
+                })
+            })
+            fetch(`http://localhost:5342/movies/${currentId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ id: currentId, average: average, ratings: ratings})
+            })
+            .then(response => {document.getElementById(`average${currentId}`).textContent = average})
+            .then(response => {document.getElementById(`ratings${currentId}`).textContent = ratings})
+            .then(response => {document.getElementById(`${currentId}`).reset()})
+        }
+        else if (vote !== 0){
+            let ratings = parseInt(document.getElementById(`ratings${currentId}`).textContent)
             let average = document.getElementById(`average${currentId}`).textContent
             average = parseInt(average)
             average = (((average * ratings) - result[0].rating) + vote)/ratings
@@ -56,9 +86,10 @@ export const SubmitRating = function (event) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ movieId: currentId, average: average, ratings: ratings})
+                body: JSON.stringify({ id: currentId, average: average, ratings: ratings})
             })
             .then(response => {document.getElementById(`average${currentId}`).textContent = average})
+            .then(response => {document.getElementById(`ratings${currentId}`).textContent = ratings})
             .then(response => {document.getElementById(`${currentId}`).reset()})
         }
         else if (document.getElementById(`ratings${currentId}`).textContent === "No Ratings Yet"){
@@ -67,10 +98,10 @@ export const SubmitRating = function (event) {
         else {
             let ratings = document.getElementById(`ratings${currentId}`).textContent
             ratings = parseInt(ratings)
-            ratings = (ratings - 1)
             let average = document.getElementById(`average${currentId}`).textContent
             average = parseInt(average)
-            average = ((average * ratings) - result[0].rating)/(ratings)
+            average = ((average * ratings) - result[0].rating)/(ratings - 1)
+            ratings = (ratings - 1)
             if (ratings === 0) {
                 fetch(`http://localhost:5342/moviesUsers/${result[0].id}`, {
                     method: "DELETE",
@@ -101,7 +132,7 @@ export const SubmitRating = function (event) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ movieId: currentId, average: average, ratings: ratings})
+                body: JSON.stringify({ id: currentId, average: average, ratings: ratings})
             })
             .then(response => {document.getElementById(`ratings${currentId}`).textContent = ratings})
             .then(response => {document.getElementById(`average${currentId}`).textContent = average})
