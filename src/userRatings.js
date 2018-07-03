@@ -89,9 +89,6 @@ class UserRatings extends Component {
         this.userRatingFunction(page)
     }.bind(this)
 
-    // componentWillMount(){
-        
-    // }
     componentDidMount(){
         this.initialUserRatingFunction()
     }
